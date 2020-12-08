@@ -1,7 +1,9 @@
 import os
-from flask import Flask, flash, request, redirect, url_for, send_from_directory
+from flask import Flask, flash, request, redirect, url_for, send_from_directory, render_template
 from werkzeug.utils import secure_filename
 from pathlib import Path
+
+BASE_URL = 'foo'
 
 PARENT_DIRECTORY = Path(__file__).parent.absolute()
 UPLOAD_FOLDER = PARENT_DIRECTORY / 'uploads'
@@ -9,7 +11,7 @@ UPLOAD_FOLDER.mkdir(exist_ok=True)
 
 ALLOWED_EXTENSIONS = {'txt', 'mp3'}
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="", static_folder="", static_url_path="")
 app.config['UPLOAD_FOLDER'] = str(UPLOAD_FOLDER)
 
 def allowed_file(filename):
@@ -34,15 +36,8 @@ def upload_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return redirect(url_for('uploaded_file',
                                     filename=filename))
-    return '''
-    <!doctype html>
-    <title>Upload new File</title>
-    <h1>Upload new File</h1>
-    <form method=post enctype=multipart/form-data>
-      <input type=file name=file>
-      <input type=submit value=Upload>
-    </form>
-    '''
+
+    return render_template('controller.html', base_url=BASE_URL)
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):

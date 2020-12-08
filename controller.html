@@ -1,4 +1,4 @@
-<html>
+﻿<html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,15 +11,24 @@
     
     </head>
     <body>
+        <h1>{{message}}</h1>
         <div>
             <center>
                 <h3>Raspberry Pi LED Controller</h3>
                 <button id='toy'>Thinking of you!</button>
                 <p id='desc'>Radhika's bear is glowing pink :)</p>
+                <br />
+                <br />
+                <h3>Upload Voice Recording</h3>
+                <h5>Upload new File</h5>
+                <form method=post enctype=multipart/form-data>
+                    <input type=file name=file>
+                    <input type=submit value=Upload>
+                </form>
             </center>
         </div>
         <script type="text/javascript">
-            
+
             var pubnub = PUBNUB.init({
                 publish_key: 'pub-c-63771edf-cfc7-4d18-b066-24b1e7f0e40c',
                 subscribe_key: 'sub-c-d6f1853a-38ed-11eb-99ef-fa1b309c1f97'
@@ -27,31 +36,31 @@
 
             var description = document.getElementById('desc');
             description.style.display = 'none';
-            
+
             pubnub.subscribe({
                 channel: 'raspberry-control',
-                message: function(m){
+                message: function (m) {
                     console.log(m)
                     var msg = String(m)
-                    if(msg == 'lit') {
+                    if (msg == 'lit') {
                         description.style.display = 'block';
                     }
-                    if(msg == 'off') {
+                    if (msg == 'off') {
                         description.style.display = 'none';
                     }
                 }
             });
-            
-            $( document ).ready(function() {
-                
-                $('#toy').click(function(e){
-                    
+
+            $(document).ready(function () {
+
+                $('#toy').click(function (e) {
+
                     pubmsg = 'pink';
-                    
+
                     pubnub.publish(
-                        { 
-                            channel : 'raspberry-control' ,
-                            message :  pubmsg
+                        {
+                            channel: 'raspberry-control',
+                            message: pubmsg
                         }
                     );
                 });
