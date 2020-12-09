@@ -9,9 +9,10 @@ PARENT_DIRECTORY = Path(__file__).parent.absolute()
 UPLOAD_FOLDER = PARENT_DIRECTORY / 'uploads'
 UPLOAD_FOLDER.mkdir(exist_ok=True)
 
-ALLOWED_EXTENSIONS = {'txt', 'mp3'}
+ALLOWED_EXTENSIONS = {'mp3', 'wav'}
 
 app = Flask(__name__, template_folder="", static_folder="", static_url_path="")
+app.secret_key = os.urandom(24)
 app.config['UPLOAD_FOLDER'] = str(UPLOAD_FOLDER)
 
 def allowed_file(filename):
@@ -22,10 +23,10 @@ def allowed_file(filename):
 def upload_file():
     if request.method == 'POST':
         # check if the post request has the file part
-        if 'file' not in request.files:
+        if 'audio_data' not in request.files:
             flash('No file part')
             return redirect(request.url)
-        file = request.files['file']
+        file = request.files['audio_data']
         # if user does not select file, browser also
         # submit an empty part without filename
         if file.filename == '':
