@@ -11,20 +11,28 @@
     
     </head>
     <body>
-        <h1>{{message}}</h1>
+        <!-- <h1>{{message}}</h1> -->
         <div>
             <center>
-                <h3>Raspberry Pi LED Controller</h3>
+                <h1>Raspberry Pi LED Controller</h1>
                 <button id='toy'>Thinking of you!</button>
                 <p id='desc'>Radhika's bear is glowing pink :)</p>
                 <br />
                 <br />
-                <h3>Upload Voice Recording</h3>
-                <h5>Upload new File</h5>
+                <h1>Upload Voice Recording</h1>
+                <h3>Upload new File</h3>
                 <form method=post enctype=multipart/form-data>
                     <input type=file name=file>
                     <input type=submit value=Upload>
                 </form>
+                <h1>Webpage Recorder</h1>
+            <div id="controls">
+             <button id="recordButton">Record</button>
+             <button id="pauseButton" disabled>Pause</button>
+             <button id="stopButton" disabled>Stop</button>
+            </div>
+            <p><strong>Recordings:</strong></p>
+            <ol id="recordingsList"></ol>
             </center>
         </div>
         <script type="text/javascript">
@@ -66,5 +74,7 @@
                 });
             });
         </script>
+        <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
+        <script src="js/app.js"></script>
     </body>
 </html>
