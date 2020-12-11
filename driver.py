@@ -2,6 +2,8 @@ from pubnub.callbacks import SubscribeCallback
 from pubnub.enums import PNStatusCategory, PNOperationType
 from pubnub.pnconfiguration import PNConfiguration
 from pubnub.pubnub import PubNub
+import wget
+from playsound import playsound
 
 pnconfig = PNConfiguration()
 pnconfig.subscribe_key = "sub-c-d6f1853a-38ed-11eb-99ef-fa1b309c1f97"
@@ -45,4 +47,11 @@ class LightUpCallback(SubscribeCallback):
             pubnub.publish().channel('raspberry-control').message(state).pn_async(my_publish_callback)
 
 pubnub.add_listener(LightUpCallback())
+
+def play_sound():
+    url = 'http://quarantineplushy.herokuapp.com/uploads/podcast.wav'
+    wget.download(url, 'podcast.wav')
+    playsound('podcast.wav')
+
+play_sound()
 pubnub.subscribe().channels('raspberry-control').execute()

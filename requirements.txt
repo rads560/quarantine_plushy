@@ -2,3 +2,4 @@ flask
 pubnub
 gunicorn
 playsound
+wget
