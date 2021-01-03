@@ -32,6 +32,19 @@ GPIO.setup(10, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 # Setup event on pin 10 rising edge
 GPIO.add_event_detect(10, GPIO.RISING, callback=button_callback)
 
+'''
+To-Dos:
+1. Add another button for turning all lights off? (sometimes the user might not want lights at all)
+   This button could also act as the reject button.
+2. While the podcast is being played, other requests should wait until the podcast is done playing.
+3. While the spotify is being played, thinking of you messages can still be received (lights and audio should be separated).
+4. If the podcast comes during a spotify connection, the plushy would blink and wait for the user to accept/reject the podcast
+   while the spotify music is being played.
+   If the user accepts the podcast, the plushy would stop blinking and start playing the podcast. The plushy would go back to
+   the spotify mode after the podcast is done playing.
+   If the user rejects the podcast, the plushy would blink again after 30 minutes.
+'''
+
 while True:
     # The message can be either "podcast", "spotify", or "thinking"
     arg = input("Please enter the type of message you want to send: \n")
