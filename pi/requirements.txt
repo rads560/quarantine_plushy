@@ -3,3 +3,5 @@ pubnub
 gunicorn
 playsound
 wget
+neopixel
+matplotlib
