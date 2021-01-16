@@ -14,7 +14,7 @@ colormap = colors.Colormap
 # See available color names here: https://matplotlib.org/3.1.0/gallery/color/named_colors.html
 def display_color(colorname):
 	rgb_tuple = colors.to_rgb(colorname)
-	scaled_tuple = tuple(255 * c for c in rgb_tuple)
+	scaled_tuple = tuple(int(255 * c for c in rgb_tuple))
 	print(scaled_tuple)
 	pixels.fill(scaled_tuple)
 	pixels.show()
