@@ -27,8 +27,8 @@ def button_callback(channel):
 GPIO.setwarnings(False)
 # Use physical pin numbering
 GPIO.setmode(GPIO.BOARD)
-# Set pin 10 to be an input pin and set initial value to be pulled low (off)
-GPIO.setup(10, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+# Set pin 8 to be an input pin and set initial value to be pulled low (off)
+GPIO.setup(8, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 # Setup event on pin 10 rising edge
 GPIO.add_event_detect(10, GPIO.RISING, callback=button_callback)
 
