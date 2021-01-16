@@ -1,7 +1,7 @@
 # Button code reference: https://raspberrypihq.com/use-a-push-button-with-raspberry-pi-gpio/
 
 # Install through the command "pip install RPi.GPIO"
-Import Raspberry Pi GPIO library
+#Import Raspberry Pi GPIO library
 import RPi.GPIO as GPIO
 
 # Boolean to keep track of whether the button got pressed
