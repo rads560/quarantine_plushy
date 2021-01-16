@@ -46,63 +46,65 @@ To-Dos:
 '''
 
 while True:
+    message = input("Press enter to quit\n\n")
+
     # The message can be either "podcast", "spotify", or "thinking"
-    arg = input("Please enter the type of message you want to send: \n")
+    # arg = input("Please enter the type of message you want to send: \n")
 
-    # For debugging without an actual button:
-    # if arg == "button":
-    #     button_pressed = True
+    # # For debugging without an actual button:
+    # # if arg == "button":
+    # #     button_pressed = True
     
-    if arg == "thinking":
-        state = THINKING_STATE
-        print("thinking of you lights on")
-    elif arg == "podcast":
-        state = PODCAST_STATE
-    elif arg == "spotify":
-        state = SPOTIFY_STATE
+    # if arg == "thinking":
+    #     state = THINKING_STATE
+    #     print("thinking of you lights on")
+    # elif arg == "podcast":
+    #     state = PODCAST_STATE
+    # elif arg == "spotify":
+    #     state = SPOTIFY_STATE
 
-    if state == THINKING_STATE:
-        if button_pressed:
-            print("thinking of you lights off")
-            button_pressed = False
+    # if state == THINKING_STATE:
+    #     if button_pressed:
+    #         print("thinking of you lights off")
+    #         button_pressed = False
    
-    elif state == PODCAST_STATE:
-        print("lights blinking")
-        if button_pressed:
-            print("playing podcast")
-            state = PLAYING_PODCAST_STATE
-            button_pressed = False
+    # elif state == PODCAST_STATE:
+    #     print("lights blinking")
+    #     if button_pressed:
+    #         print("playing podcast")
+    #         state = PLAYING_PODCAST_STATE
+    #         button_pressed = False
     
-    elif state == PLAYING_PODCAST_STATE:
-        if button_pressed:
-            print("pausing podcast")
-            state = PAUSING_PODCAST_STATE
-            button_pressed = False
+    # elif state == PLAYING_PODCAST_STATE:
+    #     if button_pressed:
+    #         print("pausing podcast")
+    #         state = PAUSING_PODCAST_STATE
+    #         button_pressed = False
     
-    elif state == PAUSING_PODCAST_STATE:
-        if button_pressed:
-            print("playing podcast")
-            state = PLAYING_PODCAST_STATE
-            button_pressed = False
+    # elif state == PAUSING_PODCAST_STATE:
+    #     if button_pressed:
+    #         print("playing podcast")
+    #         state = PLAYING_PODCAST_STATE
+    #         button_pressed = False
     
-    elif state == SPOTIFY_STATE:
-        print("lights turn green")
-        if button_pressed:
-            print("playing spotify")
-            state = PLAYING_SPOTIFY_STATE
-            button_pressed = False
+    # elif state == SPOTIFY_STATE:
+    #     print("lights turn green")
+    #     if button_pressed:
+    #         print("playing spotify")
+    #         state = PLAYING_SPOTIFY_STATE
+    #         button_pressed = False
 
-    elif state == PLAYING_SPOTIFY_STATE:
-        if button_pressed:
-            print("pausing spotify")
-            state = PAUSING_SPOTIFY_STATE
-            button_pressed = False
+    # elif state == PLAYING_SPOTIFY_STATE:
+    #     if button_pressed:
+    #         print("pausing spotify")
+    #         state = PAUSING_SPOTIFY_STATE
+    #         button_pressed = False
 
-    elif state == PAUSING_SPOTIFY_STATE:
-        if button_pressed:
-            print("playing spotify")
-            state = PLAYING_SPOTIFY_STATE
-            button_pressed = False
+    # elif state == PAUSING_SPOTIFY_STATE:
+    #     if button_pressed:
+    #         print("playing spotify")
+    #         state = PLAYING_SPOTIFY_STATE
+    #         button_pressed = False
 
 # Clean up
 GPIO.cleanup()
