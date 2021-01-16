@@ -15,6 +15,7 @@ colormap = colors.Colormap
 def display_color(colorname):
 	rgb_tuple = colors.to_rgb(colorname)
 	scaled_tuple = tuple(int(255 * c) for c in rgb_tuple)
+	scaled_tuple = Reverse(scaled_tuple)
 	print(scaled_tuple)
 	pixels.fill(scaled_tuple)
 	pixels.show()
