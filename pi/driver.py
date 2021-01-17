@@ -4,6 +4,10 @@ from pubnub.pnconfiguration import PNConfiguration
 from pubnub.pubnub import PubNub
 import wget
 from playsound import playsound
+import time
+import board
+import neopixel
+from matplotlib import colors
 
 pnconfig = PNConfiguration()
 pnconfig.subscribe_key = "sub-c-d6f1853a-38ed-11eb-99ef-fa1b309c1f97"
