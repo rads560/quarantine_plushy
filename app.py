@@ -40,7 +40,7 @@ def upload_file():
             return redirect(url_for('uploaded_file',
                                     filename=filename))
 
-    return render_template('controller.html', base_url=BASE_URL)
+    return render_template('website/index.html', base_url=BASE_URL)
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
