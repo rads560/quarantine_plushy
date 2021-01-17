@@ -10,6 +10,24 @@ pnconfig.subscribe_key = "sub-c-d6f1853a-38ed-11eb-99ef-fa1b309c1f97"
 pnconfig.publish_key = "pub-c-63771edf-cfc7-4d18-b066-24b1e7f0e40c"
 pubnub = PubNub(pnconfig)
 
+pixel_pin = board.D18
+num_pixels = 30
+ORDER = neopixel.RGB
+
+pixels = neopixel.NeoPixel(pixel_pin, num_pixels, auto_write=False, brightness=0.2, pixel_order=ORDER)
+colormap = colors.Colormap
+
+# Display the color specified by colorname on the LED strip
+# See available color names here: https://matplotlib.org/3.1.0/gallery/color/named_colors.html
+def display_color(colorname):
+    rgb_tuple = colors.to_rgb(colorname)
+    scaled_tuple = tuple(int(255 * c) for c in rgb_tuple)
+    grb_tuple = (scaled_tuple[1], scaled_tuple[0], scaled_tuple[2])
+    print(grb_tuple)
+    pixels.fill(grb_tuple)
+    pixels.show()
+    time.sleep(1)
+
 def my_publish_callback(envelope, status):
     # Check whether request successfully completed or not
     if not status.is_error():
@@ -43,6 +61,7 @@ class LightUpCallback(SubscribeCallback):
         # Handle new message stored in message.message
         print('message is: ' + str(message.message))
         if(message.message == 'pink'):
+            display_color(message.message)
             state = 'lit'
             pubnub.publish().channel('raspberry-control').message(state).pn_async(my_publish_callback)
 
