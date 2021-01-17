@@ -53,5 +53,5 @@ def play_sound():
     wget.download(url, 'podcast.wav')
     playsound('podcast.wav')
 
-play_sound()
+# play_sound()
 pubnub.subscribe().channels('raspberry-control').execute()
