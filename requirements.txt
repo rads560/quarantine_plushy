@@ -1,0 +1,4 @@
+flask
+pubnub
+gunicorn
+wget

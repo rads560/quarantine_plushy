@@ -1,6 +1,4 @@
-flask
 pubnub
-gunicorn
 playsound
 wget
 neopixel
