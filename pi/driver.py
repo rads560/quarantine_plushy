@@ -24,9 +24,12 @@ colormap = colors.Colormap
 # Display the color specified by colorname on the LED strip
 # See available color names here: https://matplotlib.org/3.1.0/gallery/color/named_colors.html
 def display_color(colorname):
-    rgb_tuple = colors.to_rgb(colorname)
-    scaled_tuple = tuple(int(255 * c) for c in rgb_tuple)
-    grb_tuple = (scaled_tuple[1], scaled_tuple[0], scaled_tuple[2])
+    # rgb_tuple = colors.to_rgb(colorname)
+    value = colorname.lstrip('#')
+    lv = len(value)
+    rgb_tuple = tuple(int(value[i:i + lv // 3], 16) for i in range(0, lv, lv // 3))
+    # scaled_tuple = tuple(int(255 * c) for c in rgb_tuple)
+    grb_tuple = (rgb_tuple[1], rgb_tuple[0], rgb_tuple[2])
     print(grb_tuple)
     pixels.fill(grb_tuple)
     pixels.show()
@@ -64,7 +67,7 @@ class LightUpCallback(SubscribeCallback):
     def message(self, pubnub, message):
         # Handle new message stored in message.message
         print('message is: ' + str(message.message))
-        if(message.message == 'pink'):
+        if(message.message.find("#") >= 0):
             display_color(message.message)
             state = 'lit'
             pubnub.publish().channel('raspberry-control').message(state).pn_async(my_publish_callback)
