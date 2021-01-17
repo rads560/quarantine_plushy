@@ -21,7 +21,13 @@
 </head>
 <body class="body">
   <h1 class="thinking-of-you-heading">Thinking of You</h1>
-  <div class="choose-color-block">Choose <br>Color</div>
+  <div class="choose-color-block">
+    Choose 
+    <br>
+    Color 
+    <br> 
+    <input type="color" id="favcolor" name="favcolor" value="#ff0000">
+  </div>
   <!-- <input type="color" id="favcolor" name="favcolor" value="#ff0000"> -->
   <a href="../action-pages/confirmation.html" class="submit-button-thinkingofyou w-button" id='toy'>Submit</a>
   <!-- <button id='toy'>Thinking of you!</button> -->
@@ -48,7 +54,8 @@
                 console.log("init");
                 $('#toy').click(function (e) {
                     console.log("hi");
-                    pubmsg = 'pink';
+                    pubmsg = document.getElementById("favcolor").value
+                    // pubmsg = 'pink';
 
                     pubnub.publish(
                         {
