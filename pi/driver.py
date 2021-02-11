@@ -3,7 +3,8 @@ from pubnub.enums import PNStatusCategory, PNOperationType
 from pubnub.pnconfiguration import PNConfiguration
 from pubnub.pubnub import PubNub
 import wget
-from playsound import playsound
+# from playsound import playsound
+import pygame
 import time
 import board
 import neopixel
@@ -71,13 +72,22 @@ class LightUpCallback(SubscribeCallback):
             display_color(message.message)
             state = 'lit'
             pubnub.publish().channel('raspberry-control').message(state).pn_async(my_publish_callback)
+        if(message.message.find("uploaded") >= 0):
+            pygame.mixer.init()
+			pygame.mixer.music.load("audio/sample1.mp3")
+			pygame.mixer.music.play()
+
+			while pygame.mixer.music.get_busy() == True:
+				continue
+            state = 'audio_start'
+            pubnub.publish().channel('raspberry-control').message(state).pn_async(my_publish_callback)
 
 pubnub.add_listener(LightUpCallback())
 
-def play_sound():
-    url = 'http://quarantineplushy.herokuapp.com/uploads/podcast.wav'
-    wget.download(url, 'podcast.wav')
-    playsound('podcast.wav')
+# def play_sound():
+#     url = 'http://quarantineplushy.herokuapp.com/uploads/podcast.wav'
+#     wget.download(url, 'podcast.wav')
+#     playsound('podcast.wav')
 
 # play_sound()
 pubnub.subscribe().channels('raspberry-control').execute()

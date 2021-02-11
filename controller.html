@@ -23,7 +23,7 @@
                 <h3>Upload new File</h3>
                 <form method=post enctype=multipart/form-data>
                     <input type=file name=file>
-                    <input type=submit value=Upload>
+                    <input id='podcast' type=submit value=Upload>
                 </form>
                 <h1>Webpage Recorder</h1>
                 <div id="controls">
@@ -64,6 +64,17 @@
                 $('#toy').click(function (e) {
 
                     pubmsg = 'pink';
+
+                    pubnub.publish(
+                        {
+                            channel: 'raspberry-control',
+                            message: pubmsg
+                        }
+                    );
+                });
+
+                $('#podcast').click(function (e) {
+                    pubmsg = 'uploaded';
 
                     pubnub.publish(
                         {
