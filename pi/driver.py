@@ -79,6 +79,7 @@ class LightUpCallback(SubscribeCallback):
             r = requests.get(url)
             with open("audio/test.mp3", "wb") as f:
                 f.write(r.content)
+                print('downloading from server...')
             pygame.mixer.music.load("audio/test.mp3")
             # filename = wget.download(url)
             # pygame.mixer.music.load("audio/sample1.mp3")
