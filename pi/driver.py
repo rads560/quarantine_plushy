@@ -74,11 +74,11 @@ class LightUpCallback(SubscribeCallback):
             pubnub.publish().channel('raspberry-control').message(state).pn_async(my_publish_callback)
         if(message.message.find("uploaded") >= 0):
             pygame.mixer.init()
-			pygame.mixer.music.load("audio/sample1.mp3")
-			pygame.mixer.music.play()
+            pygame.mixer.music.load("audio/sample1.mp3")
+            pygame.mixer.music.play()
 
-			while pygame.mixer.music.get_busy() == True:
-				continue
+            while pygame.mixer.music.get_busy() == True:
+                continue
             state = 'audio_start'
             pubnub.publish().channel('raspberry-control').message(state).pn_async(my_publish_callback)
 
