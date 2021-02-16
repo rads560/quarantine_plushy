@@ -9,6 +9,7 @@ import time
 import board
 import neopixel
 from matplotlib import colors
+import requests
 
 pnconfig = PNConfiguration()
 pnconfig.subscribe_key = "sub-c-d6f1853a-38ed-11eb-99ef-fa1b309c1f97"
@@ -74,7 +75,13 @@ class LightUpCallback(SubscribeCallback):
             pubnub.publish().channel('raspberry-control').message(state).pn_async(my_publish_callback)
         if(message.message.find("uploaded") >= 0):
             pygame.mixer.init()
-            pygame.mixer.music.load("audio/sample1.mp3")
+            url = "https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3"
+            r = requests.get(url)
+            with open("audio/test.mp3", "wb") as f:
+                f.write(r.content)
+            pygame.mixer.music.load("audio/test.mp3")
+            # filename = wget.download(url)
+            # pygame.mixer.music.load("audio/sample1.mp3")
             pygame.mixer.music.play()
 
             while pygame.mixer.music.get_busy() == True:
