@@ -1,5 +1,5 @@
 import os
-from flask import Flask, flash, request, redirect, url_for, send_from_directory, render_template
+from flask import Flask, flash, request, redirect, url_for, send_from_directory, render_template, current_app
 from werkzeug.utils import secure_filename
 from pathlib import Path
 
@@ -11,7 +11,7 @@ UPLOAD_FOLDER.mkdir(exist_ok=True)
 
 ALLOWED_EXTENSIONS = {'mp3', 'wav'}
 
-app = Flask(__name__, template_folder="", static_folder="", static_url_path="")
+app = Flask(__name__, static_url_path="")
 app.secret_key = os.urandom(24)
 app.config['UPLOAD_FOLDER'] = str(UPLOAD_FOLDER)
 
@@ -40,7 +40,8 @@ def upload_file():
             return redirect(url_for('uploaded_file',
                                     filename=filename))
 
-    return render_template('controller.html', base_url=BASE_URL)
+    #return render_template('controller.html', base_url=BASE_URL)
+    return current_app.send_static_file('index.html')
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
