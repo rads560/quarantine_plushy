@@ -95,7 +95,7 @@
 
                 $('#toy').click(function (e) {
                 	console.log(HEX2RGB(document.getElementById("myColor").value));
-                    pubmsg = 'pink';
+                    pubmsg = HEX2RGB(document.getElementById("myColor").value);
 
                     pubnub.publish(
                         {
