@@ -29,7 +29,7 @@ def display_color(colorname):
     # rgb_tuple = colors.to_rgb(colorname)
     value = colorname.lstrip('#')
     lv = len(value)
-    vals = value.strip(",")
+    vals = value.split(',')
     print(vals)
     rgb_tuple = (int(vals[0]), int(vals[1]), int(vals[2]))
     print(rgb_tuple)
