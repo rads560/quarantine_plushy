@@ -30,7 +30,7 @@ def display_color(colorname):
     value = colorname.lstrip('#')
     lv = len(value)
     vals = value.strip(",")
-    rgb_tuple = tuple(int(vals[0]), int(vals[1]), int(vals[2]))
+    rgb_tuple = (int(vals[0]), int(vals[1]), int(vals[2]))
     # rgb_tuple = tuple(int(value[i:i + lv // 3], 16) for i in range(0, lv, lv // 3))
     # scaled_tuple = tuple(int(255 * c) for c in rgb_tuple)
     grb_tuple = (rgb_tuple[1], rgb_tuple[0], rgb_tuple[2])
