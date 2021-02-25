@@ -37,9 +37,9 @@ def display_color(colorname):
     # scaled_tuple = tuple(int(255 * c) for c in rgb_tuple)
     grb_tuple = (rgb_tuple[1], rgb_tuple[0], rgb_tuple[2])
     print(grb_tuple)
-    # pixels.fill(grb_tuple)
-    # pixels.show()
-    # time.sleep(1)
+    pixels.fill(grb_tuple)
+    pixels.show()
+    time.sleep(1)
 
 def my_publish_callback(envelope, status):
     # Check whether request successfully completed or not
