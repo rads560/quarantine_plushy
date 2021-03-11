@@ -123,6 +123,7 @@ function createDownloadLink(blob) {
 	var url = URL.createObjectURL(blob);
 	var au = document.createElement('audio');
 	var li = document.createElement('li');
+	li.classList.add("recording");
 	var link = document.createElement('a');
 
 	//name of .wav file to use during upload and download (without extendion)
@@ -150,6 +151,10 @@ function createDownloadLink(blob) {
 	var upload = document.createElement('a');
 	upload.href="#";
 	upload.innerHTML = "Upload";
+	upload.classList.add("recording");
+	upload.id='podcast';
+	// upload.classList.add('record-upload-button');
+	// upload.classList.add('w-button');
 	upload.addEventListener("click", function(event){
 		  var xhr=new XMLHttpRequest();
 		  xhr.onload=function(e) {
