@@ -1,5 +1,5 @@
 import os
-from flask import Flask, flash, request, redirect, url_for, send_from_directory, render_template, current_app
+from flask import Flask, flash, request, redirect, url_for, send_from_directory, render_template, current_app, jsonify
 from werkzeug.utils import secure_filename
 from pathlib import Path
 
@@ -9,7 +9,7 @@ PARENT_DIRECTORY = Path(__file__).parent.absolute()
 UPLOAD_FOLDER = PARENT_DIRECTORY / 'uploads'
 UPLOAD_FOLDER.mkdir(exist_ok=True)
 
-ALLOWED_EXTENSIONS = {'mp3', 'wav'}
+ALLOWED_EXTENSIONS = {'wav'}
 
 app = Flask(__name__, static_url_path="")
 app.secret_key = os.urandom(24)
@@ -37,8 +37,7 @@ def upload_file():
             #filename = secure_filename(file.filename)
             filename = 'podcast.wav'
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('uploaded_file',
-                                    filename=filename))
+            return jsonify(success=True)
 
     #return render_template('controller.html', base_url=BASE_URL)
     return current_app.send_static_file('index.html')
