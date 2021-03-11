@@ -153,8 +153,6 @@ function createDownloadLink(blob) {
 	upload.innerHTML = "Upload";
 	upload.classList.add("recording");
 	upload.id='podcast';
-	// upload.classList.add('record-upload-button');
-	// upload.classList.add('w-button');
 	upload.addEventListener("click", function(event){
 		  var xhr=new XMLHttpRequest();
 		  xhr.onload=function(e) {
